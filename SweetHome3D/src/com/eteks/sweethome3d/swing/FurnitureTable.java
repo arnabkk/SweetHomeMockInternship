@@ -727,7 +727,7 @@ public class FurnitureTable extends JTable implements View, Printable {
 
   /**
    * Returns the columns to print: the displayed columns, plus a Level column
-   * after the Name column when the home has levels and Level isn't already displayed.
+   * at the end when the home has levels and Level isn't already displayed.
    * The columns displayed on screen are not changed.
    */
   private List<TableColumn> getPrintedColumns() {
@@ -746,12 +746,7 @@ public class FurnitureTable extends JTable implements View, Printable {
             && columnModel instanceof FurnitureTableColumnModel) {
       TableColumn levelColumn = ((FurnitureTableColumnModel)columnModel)
               .getAvailableColumn(HomePieceOfFurniture.SortableProperty.LEVEL);
-      int levelColumnIndex = 0;
-      if (!printedColumns.isEmpty()
-              && printedColumns.get(0).getIdentifier() == HomePieceOfFurniture.SortableProperty.NAME) {
-        levelColumnIndex = 1;
-      }
-      printedColumns.add(levelColumnIndex, levelColumn);
+      printedColumns.add(levelColumn);
     }
     return printedColumns;
   }
